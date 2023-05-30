@@ -8,9 +8,11 @@ def call() {
     if (TicketNumber.startsWith("ICE-")) {
         def TICKET = "-${TicketNumber}"
         sh "echo Hello 333 ${TICKET}"
+        return TICKET
     } else {
         def TICKET = "ICE-XXX"
         sh "echo Hello 444 ${TICKET}"
+        return TICKET
     }
     def buildNumber = currentBuild.number
     sh "echo Hello 555 ${buildNumber}"
