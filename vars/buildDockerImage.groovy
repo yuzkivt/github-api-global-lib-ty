@@ -7,10 +7,10 @@ def call(String microservice) {
     sh "echo Hello 2222 ${TicketNumber}"
     def TICKET
     if (TicketNumber.startsWith("ICE-")) {
-        def TICKET = "-${TicketNumber}"
+        TICKET = "-${TicketNumber}"
         sh "echo Hello 333 ${TICKET}"
     } else {
-        def TICKET = "ICE-XXX"
+        TICKET = "ICE-XXX"
         sh "echo Hello 444 ${TICKET}"
     }
     def buildNumber = currentBuild.number
