@@ -9,7 +9,7 @@ def call() {
         def TICKET = "-${TicketNumber}"
         sh "echo Hello 333 ${TICKET}"
     } else {
-        def TICKET = ""
+        def TICKET = "ICE-XXX"
         sh "echo Hello 444 ${TICKET}"
     }
     def buildNumber = currentBuild.number
