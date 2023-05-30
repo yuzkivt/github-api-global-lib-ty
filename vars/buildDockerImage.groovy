@@ -11,18 +11,21 @@ def call(String microservice) {
     } else {
         def TICKET = "ICE-XXX"
         sh "echo Hello 444 ${TICKET}"
+        return TICKET
     }
     def buildNumber = currentBuild.number
+    sh "echo Hello 555_111 ${TICKET}"
     sh "echo Hello 555 ${buildNumber}"
     def TAG = shortCommit + "-build-" + buildNumber
     sh "echo Hello 666 ${TAG}"
 
     script {
         docker.withRegistry('https://${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com', 'ecr:us-east-1:ecr') {
-
+            sh "echo Hello 777 ${microservice}:${TAG}"
+            sh "echo Hello 888 ${microservice}:${TAG}${TICKET}"
             def customImage = docker.build("${microservice}:${TAG}${TICKET}")
             //        customImage.push()
-            sh "echo Hello 777 ${microservice}:${TAG}${TICKET}"
+            sh "echo Hello 999 ${microservice}:${TAG}${TICKET}"
         }
     }
 
