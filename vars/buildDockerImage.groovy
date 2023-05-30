@@ -5,13 +5,13 @@ def call(String microservice) {
     sh "echo Hello 1111 ${shortCommit}"
     def TicketNumber = sh(returnStdout: true, script: "git log -1 --pretty=format:%s | sed 's/.*\\[\\(.*\\)\\].*/\\1/'").trim()
     sh "echo Hello 2222 ${TicketNumber}"
+    def TICKET
     if (TicketNumber.startsWith("ICE-")) {
         def TICKET = "-${TicketNumber}"
         sh "echo Hello 333 ${TICKET}"
     } else {
         def TICKET = "ICE-XXX"
         sh "echo Hello 444 ${TICKET}"
-        return TICKET
     }
     def buildNumber = currentBuild.number
     sh "echo Hello 555_111 ${TICKET}"
